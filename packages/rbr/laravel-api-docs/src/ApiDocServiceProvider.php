@@ -53,6 +53,10 @@ class ApiDocServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../public/images' => public_path('images'),
             ], 'api-docs-images');
+
+            $this->publishes([
+                __DIR__.'/../public/build' => public_path('vendor/api-docs/build'),
+            ], 'api-docs-assets-build');
         }
     }
 }

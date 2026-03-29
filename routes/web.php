@@ -3,17 +3,16 @@
 use Rbr\LaravelApiDocs\Http\Controllers\ApiDocController;
 use Rbr\LaravelApiDocs\Http\Controllers\ExternalEndpointController;
 use Rbr\LaravelApiDocs\Http\Controllers\ExternalProjectController;
+use Rbr\LaravelApiDocs\Http\Middleware\SetInertiaRootView;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    \Inertia\Inertia::setRootView('api-docs::app');
-
     return \Inertia\Inertia::render('Home', [
         'title' => config('api-docs.title'),
     ]);
-});
+})->middleware(['web', SetInertiaRootView::class]);
 
-Route::prefix('docs/api')->name('api-docs.')->group(function () {
+Route::prefix('docs/api')->name('api-docs.')->middleware(['web', SetInertiaRootView::class])->group(function () {
     Route::get('/', [ApiDocController::class, 'index'])->name('index');
     Route::get('/endpoints/{endpoint}', [ApiDocController::class, 'show'])->name('show');
     Route::delete('/endpoints/{endpoint}', [ApiDocController::class, 'destroy'])->name('destroy');

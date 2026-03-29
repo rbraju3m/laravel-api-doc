@@ -4,19 +4,18 @@ use Illuminate\Support\Facades\Route;
 use Rbr\LaravelApiDocs\Http\Controllers\ApiDocController;
 use Rbr\LaravelApiDocs\Http\Controllers\ExternalEndpointController;
 use Rbr\LaravelApiDocs\Http\Controllers\ExternalProjectController;
+use Rbr\LaravelApiDocs\Http\Middleware\SetInertiaRootView;
 
 // Home page with author info
 Route::get('/', function () {
-    \Inertia\Inertia::setRootView('api-docs::app');
-
     return \Inertia\Inertia::render('Home', [
         'title' => config('api-docs.title'),
     ]);
-})->middleware(config('api-docs.middleware', ['web']))->name('api-docs.home');
+})->middleware(array_merge(config('api-docs.middleware', ['web']), [SetInertiaRootView::class]))->name('api-docs.home');
 
 Route::group([
     'prefix' => config('api-docs.route_prefix', 'docs/api'),
-    'middleware' => config('api-docs.middleware', ['web']),
+    'middleware' => array_merge(config('api-docs.middleware', ['web']), [SetInertiaRootView::class]),
     'as' => 'api-docs.',
 ], function () {
     Route::get('/', [ApiDocController::class, 'index'])->name('index');

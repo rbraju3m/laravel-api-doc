@@ -7,8 +7,5 @@ use Inertia\Inertia;
 
 class BaseController extends Controller
 {
-    public function __construct()
-    {
-        Inertia::setRootView('api-docs::app');
-    }
+    //
 }
