@@ -25,7 +25,12 @@ class RouteScanner
 
             if (isset($action['controller'])) {
                 $isClosure = false;
-                [$controllerClass, $controllerMethod] = explode('@', $action['controller']);
+                if (str_contains($action['controller'], '@')) {
+                    [$controllerClass, $controllerMethod] = explode('@', $action['controller']);
+                } else {
+                    $controllerClass = $action['controller'];
+                    $controllerMethod = '__invoke';
+                }
             }
 
             foreach ($route->methods() as $method) {
