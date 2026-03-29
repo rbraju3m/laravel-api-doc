@@ -2,7 +2,6 @@
 
 namespace Rbr\LaravelApiDocs\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use Inertia\Inertia;
 use Inertia\Response;
 use Rbr\LaravelApiDocs\Http\Requests\StoreProjectRequest;
@@ -10,7 +9,7 @@ use Rbr\LaravelApiDocs\Http\Requests\UpdateProjectRequest;
 use Rbr\LaravelApiDocs\Models\ApiProject;
 use Rbr\LaravelApiDocs\Services\ApiDoc\DocGenerator;
 
-class ExternalProjectController extends Controller
+class ExternalProjectController extends BaseController
 {
     public function index(): Response
     {

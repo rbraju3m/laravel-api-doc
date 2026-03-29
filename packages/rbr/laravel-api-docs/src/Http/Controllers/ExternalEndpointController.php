@@ -2,7 +2,6 @@
 
 namespace Rbr\LaravelApiDocs\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -14,7 +13,7 @@ use Rbr\LaravelApiDocs\Models\ApiEndpointParameter;
 use Rbr\LaravelApiDocs\Models\ApiEndpointResponse;
 use Rbr\LaravelApiDocs\Models\ApiProject;
 
-class ExternalEndpointController extends Controller
+class ExternalEndpointController extends BaseController
 {
     public function create(ApiProject $project): Response
     {

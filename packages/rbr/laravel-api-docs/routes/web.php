@@ -7,6 +7,8 @@ use Rbr\LaravelApiDocs\Http\Controllers\ExternalProjectController;
 
 // Home page with author info
 Route::get('/', function () {
+    \Inertia\Inertia::setRootView('api-docs::app');
+
     return \Inertia\Inertia::render('Home', [
         'title' => config('api-docs.title'),
     ]);

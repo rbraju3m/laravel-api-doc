@@ -6,6 +6,8 @@ use App\Http\Controllers\ExternalProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    \Inertia\Inertia::setRootView('api-docs::app');
+
     return \Inertia\Inertia::render('Home', [
         'title' => config('api-docs.title'),
     ]);

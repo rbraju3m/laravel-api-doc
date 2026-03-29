@@ -2,7 +2,6 @@
 
 namespace Rbr\LaravelApiDocs\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use Inertia\Inertia;
 use Inertia\Response;
 use Rbr\LaravelApiDocs\Models\ApiEndpoint;
@@ -10,7 +9,7 @@ use Rbr\LaravelApiDocs\Models\ApiEndpointGroup;
 use Rbr\LaravelApiDocs\Models\ApiProject;
 use Rbr\LaravelApiDocs\Services\ApiDoc\DocGenerator;
 
-class ApiDocController extends Controller
+class ApiDocController extends BaseController
 {
     public function index(): Response
     {
