@@ -1,0 +1,70 @@
+{
+  "hash": "7dbe1bae",
+  "configHash": "050b6c6d",
+  "lockfileHash": "f49e759a",
+  "browserHash": "6ec6587a",
+  "optimized": {
+    "@inertiajs/react": {
+      "src": "../../node_modules/@inertiajs/react/dist/index.esm.js",
+      "file": "@inertiajs_react.js",
+      "fileHash": "93ef67b1",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "32fcae27",
+      "needsInterop": true
+    },
+    "@mantine/core": {
+      "src": "../../node_modules/@mantine/core/esm/index.mjs",
+      "file": "@mantine_core.js",
+      "fileHash": "f5f90d93",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "00d657ed",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "66d55589",
+      "needsInterop": true
+    },
+    "@mantine/hooks": {
+      "src": "../../node_modules/@mantine/hooks/esm/index.mjs",
+      "file": "@mantine_hooks.js",
+      "fileHash": "26179886",
+      "needsInterop": false
+    },
+    "@mantine/code-highlight": {
+      "src": "../../node_modules/@mantine/code-highlight/esm/index.mjs",
+      "file": "@mantine_code-highlight.js",
+      "fileHash": "144f5b31",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-74V7U3BA": {
+      "file": "chunk-74V7U3BA.js"
+    },
+    "chunk-QVU3MBD6": {
+      "file": "chunk-QVU3MBD6.js"
+    },
+    "chunk-AU2MKR2E": {
+      "file": "chunk-AU2MKR2E.js"
+    },
+    "chunk-YROHD7EE": {
+      "file": "chunk-YROHD7EE.js"
+    },
+    "chunk-VX2H6PUQ": {
+      "file": "chunk-VX2H6PUQ.js"
+    },
+    "chunk-G3PMV62Z": {
+      "file": "chunk-G3PMV62Z.js"
+    }
+  }
+}

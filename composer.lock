@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "097a3f476dbee7585d6270e82f8f176c",
+    "content-hash": "990f7a203baa52bc79f53c6d76dad2fa",
     "packages": [
         {
             "name": "brick/math",
@@ -3367,6 +3367,64 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.2"
             },
             "time": "2025-12-14T04:43:48+00:00"
+        },
+        {
+            "name": "rbr/laravel-api-docs",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/rbr/laravel-api-docs",
+                "reference": "9d06a0502e2d350e4c2a4bbae32ed83412831d70"
+            },
+            "require": {
+                "illuminate/console": "^11.0|^12.0",
+                "illuminate/database": "^11.0|^12.0",
+                "illuminate/routing": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "inertiajs/inertia-laravel": "^2.0",
+                "php": "^8.2",
+                "symfony/process": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rbr\\LaravelApiDocs\\ApiDocServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rbr\\LaravelApiDocs\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Rbr\\LaravelApiDocs\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rashedul Bari Raju",
+                    "email": "rbraju3m@gmail.com"
+                }
+            ],
+            "description": "A self-analyzing tool that scans a Laravel project's routes, controllers, and FormRequests to generate browsable API documentation.",
+            "keywords": [
+                "api",
+                "documentation",
+                "generator",
+                "laravel",
+                "raju",
+                "rashedul",
+                "rbr"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "symfony/clock",
@@ -8461,7 +8519,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rbr/laravel-api-docs": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

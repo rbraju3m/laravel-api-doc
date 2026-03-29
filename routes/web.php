@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ApiDocController;
-use App\Http\Controllers\ExternalEndpointController;
-use App\Http\Controllers\ExternalProjectController;
+use Rbr\LaravelApiDocs\Http\Controllers\ApiDocController;
+use Rbr\LaravelApiDocs\Http\Controllers\ExternalEndpointController;
+use Rbr\LaravelApiDocs\Http\Controllers\ExternalProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
