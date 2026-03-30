@@ -33,6 +33,12 @@ class ApiDocServiceProvider extends ServiceProvider
         // Migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
+        // Auto-publish built assets if not present in public directory
+        // Runs in console context (artisan) where file permissions allow writing
+        if ($this->app->runningInConsole()) {
+            $this->autoPublishAssets();
+        }
+
         // Commands
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -67,6 +73,74 @@ class ApiDocServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../public/build' => public_path('vendor/api-docs/build'),
             ], 'api-docs-assets-build');
+        }
+    }
+
+    /**
+     * Auto-copy pre-built assets to public directory if they don't exist.
+     * This ensures the package works immediately after composer install
+     * without requiring manual vendor:publish.
+     */
+    /**
+     * Auto-copy pre-built assets to public directory if they don't exist.
+     * This ensures the package works immediately after composer install
+     * without requiring manual vendor:publish.
+     */
+    protected function autoPublishAssets(): void
+    {
+        $targetManifest = public_path('vendor/api-docs/build/manifest.json');
+
+        // Skip if assets already published
+        if (file_exists($targetManifest)) {
+            return;
+        }
+
+        $sourceDir = __DIR__.'/../public/build';
+        $sourceManifest = $sourceDir.'/manifest.json';
+
+        // Skip if package has no built assets
+        if (!file_exists($sourceManifest)) {
+            return;
+        }
+
+        $targetDir = public_path('vendor/api-docs/build');
+
+        try {
+            $this->copyDirectory($sourceDir, $targetDir);
+        } catch (\Throwable $e) {
+            // Silently fail — user can manually run:
+            // php artisan vendor:publish --tag=api-docs-assets-build --force
+        }
+    }
+
+    /**
+     * Recursively copy a directory.
+     */
+    protected function copyDirectory(string $source, string $target): void
+    {
+        if (!is_dir($target)) {
+            @mkdir($target, 0755, true);
+        }
+
+        if (!is_dir($target)) {
+            return;
+        }
+
+        $items = new \DirectoryIterator($source);
+
+        foreach ($items as $item) {
+            if ($item->isDot()) {
+                continue;
+            }
+
+            $sourcePath = $item->getPathname();
+            $targetPath = $target.'/'.$item->getFilename();
+
+            if ($item->isDir()) {
+                $this->copyDirectory($sourcePath, $targetPath);
+            } else {
+                @copy($sourcePath, $targetPath);
+            }
         }
     }
 }
