@@ -4,7 +4,9 @@ import { Link, usePage } from '@inertiajs/react';
 
 export default function Layout({ title, sidebar, children }) {
     const [opened, { toggle }] = useDisclosure();
-    const { url } = usePage();
+    const { url, apiDocsConfig } = usePage().props;
+    const routePrefix = apiDocsConfig?.route_prefix || 'docs/api';
+    const normalizedPrefix = routePrefix.startsWith('/') ? routePrefix : `/${routePrefix}`;
     const currentYear = new Date().getFullYear();
 
     return (
@@ -22,7 +24,7 @@ export default function Layout({ title, sidebar, children }) {
                             <span style={{ fontSize: 14, fontWeight: 700 }}>R</span>
                         </ThemeIcon>
                         <Title order={3} style={{ letterSpacing: -0.5 }}>
-                            {title || 'RBR API Docs'}
+                            {title || apiDocsConfig?.title || 'RBR API Docs'}
                         </Title>
                     </Group>
                     <Text size="xs" c="dimmed" visibleFrom="sm">
@@ -43,25 +45,25 @@ export default function Layout({ title, sidebar, children }) {
                     />
                     <NavLink
                         component={Link}
-                        href="/docs/api"
+                        href={normalizedPrefix}
                         label="API Documentation"
                         leftSection={<span style={{ fontSize: 16 }}>&#123;&#125;</span>}
-                        active={url.startsWith('/docs/api')}
-                        defaultOpened={url.startsWith('/docs/api')}
+                        active={url.startsWith(normalizedPrefix)}
+                        defaultOpened={url.startsWith(normalizedPrefix)}
                         mb={4}
                     >
                         <NavLink
                             component={Link}
-                            href="/docs/api"
+                            href={normalizedPrefix}
                             label="Local Docs"
-                            active={url === '/docs/api'}
+                            active={url === normalizedPrefix}
                             mb={2}
                         />
                         <NavLink
                             component={Link}
-                            href="/docs/api/projects"
+                            href={`${normalizedPrefix}/projects`}
                             label="Projects"
-                            active={url.startsWith('/docs/api/projects')}
+                            active={url.startsWith(`${normalizedPrefix}/projects`)}
                             mb={2}
                         />
                     </NavLink>

@@ -14,6 +14,16 @@ class ApiDocServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Share config with Inertia
+        if (class_exists(\Inertia\Inertia::class)) {
+            \Inertia\Inertia::share([
+                'apiDocsConfig' => [
+                    'route_prefix' => config('api-docs.route_prefix', 'docs/api'),
+                    'title' => config('api-docs.title', 'API Documentation'),
+                ],
+            ]);
+        }
+
         // Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
