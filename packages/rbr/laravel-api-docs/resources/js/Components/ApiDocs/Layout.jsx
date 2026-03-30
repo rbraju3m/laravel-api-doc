@@ -4,7 +4,9 @@ import { Link, usePage } from '@inertiajs/react';
 
 export default function Layout({ title, sidebar, children }) {
     const [opened, { toggle }] = useDisclosure();
-    const { url, apiDocsConfig } = usePage().props;
+    const page = usePage();
+    const url = page.url || '';
+    const apiDocsConfig = page.props?.apiDocsConfig;
     const routePrefix = apiDocsConfig?.route_prefix || 'docs/api';
     const normalizedPrefix = routePrefix.startsWith('/') ? routePrefix : `/${routePrefix}`;
     const currentYear = new Date().getFullYear();

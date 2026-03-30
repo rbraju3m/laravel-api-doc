@@ -30,6 +30,11 @@
         @if(isset($manifest['resources/css/app.css']['file']))
             <link rel="stylesheet" href="{{ asset('vendor/api-docs/build/' . $manifest['resources/css/app.css']['file']) }}">
         @endif
+        @if(isset($manifest['resources/js/app.jsx']['css']))
+            @foreach($manifest['resources/js/app.jsx']['css'] as $cssFile)
+                <link rel="stylesheet" href="{{ asset('vendor/api-docs/build/' . $cssFile) }}">
+            @endforeach
+        @endif
         @if(isset($manifest['resources/js/app.jsx']['file']))
             <script type="module" src="{{ asset('vendor/api-docs/build/' . $manifest['resources/js/app.jsx']['file']) }}"></script>
         @endif
